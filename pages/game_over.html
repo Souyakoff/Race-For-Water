@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Over - Goutte d'eau</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/styles/game_over.css">
+</head>
+<body>
+    <!-- Écran Game Over -->
+    <div id="gameOverScreen">
+        <h1>GAME OVER</h1>
+        <p class="score">Score final : <span id="finalScore">0</span></p>
+        
+        <!-- Message thématique aléatoire -->
+        <p class="themeMessage" id="message"></p>
+
+        <!-- Lien vers la page de redémarrage -->
+        <button id="restartBtn" onclick="restartGame()">Redémarrer le jeu</button>
+    </div>
+
+    <script>
+        // Récupérer le score final et l'afficher
+        const finalScore = localStorage.getItem('score') || 0;
+        document.getElementById('finalScore').textContent = finalScore;
+
+        const messages = [
+    "Comme l'océan, notre corps se nourrit de ce que nous lui offrons. La pollution affecte la santé de la planète, tout comme elle nous touche.",
+    "La pollution des océans est le miroir des dégâts que nous infligeons à notre propre corps. Soyons plus attentifs.",
+    "Les vagues de pollution engloutissent la mer, tout comme nos habitudes nuisent à notre santé. Agissons !",
+    "Chaque goutte d'eau polluée représente une souffrance pour la nature, tout comme pour notre organisme. Repartons sur de bonnes bases.",
+    "L'eau est source de vie, et pourtant elle est menacée. Agissons ensemble pour préserver notre planète et notre santé.",
+    "La mer, tout comme notre corps, a besoin de soin et de respect. Ne permettons pas que la pollution les détruise.",
+    "Notre santé est liée à la santé de notre planète. Protégeons l'océan et protégeons-nous.",
+    "Tout comme chaque goutte d'eau polluée affecte la mer, chaque mauvaise habitude nuit à notre corps. Changeons pour un avenir plus sain.",
+    "Nous sommes les gardiens de l'eau et de la vie. Préservons notre océan et notre propre bien-être.",
+    "La pollution tue l'océan, mais elle nous tue aussi, peu à peu. Il est temps de réagir avant qu'il ne soit trop tard.",
+    "À chaque déchet jeté dans la mer, c'est un peu de notre santé qui est mise en danger. Ensemble, agissons pour un monde plus propre."
+];
+
+
+        // Choisir un message aléatoire
+        const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+        document.getElementById('message').textContent = randomMessage;
+
+        // Fonction pour redémarrer le jeu
+        function restartGame() {
+            localStorage.removeItem('score');  // Retirer le score précédent
+            window.location.href = "Race-for-water.html"; // Rediriger vers la page de démarrage du jeu
+        }
+
+        // Changer l'arrière-plan aléatoirement
+        const backgrounds = [
+            'url("../assets/img/ocean_texture.jpg")',
+            'url("../assets/img/ocean_pollution.jpg")', // Par exemple une image représentant la pollution de l'océan
+            'url("../assets/img/healthy_ocean.jpg")'   // Une image représentant un océan sain
+        ];
+        const randomBackground = backgrounds[Math.floor(Math.random() * backgrounds.length)];
+        document.body.style.backgroundImage = randomBackground;
+
+    </script>
+</body>
+</html>
